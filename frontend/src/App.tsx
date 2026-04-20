@@ -10,6 +10,8 @@ import AIPredictor from './pages/AIPredictor';
 import TelegramPanel from './pages/TelegramPanel';
 import HospitalMap from './pages/HospitalMap';
 import './index.css';
+import DotField from './components/DotField';
+
 
 /* ─── Error Boundary ─── */
 interface EBState { hasError: boolean; error?: Error }
@@ -80,7 +82,20 @@ function AppContent() {
   return (
     <div className="app-layout">
       {!isLoginPage && <Sidebar />}
-      <main className={`main-content ${isLoginPage ? 'no-sidebar' : ''}`}>
+      {!isLoginPage && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 0, opacity: 0.5, pointerEvents: 'none' }}>
+          <DotField 
+            dotSpacing={24} 
+            dotRadius={2} 
+            glowRadius={300} 
+            glowColor="rgba(6, 182, 212, 0.1)"
+            gradientFrom="rgba(6, 182, 212, 0.2)"
+            gradientTo="rgba(59, 130, 246, 0.1)"
+          />
+        </div>
+      )}
+      <main className={`main-content ${isLoginPage ? 'no-sidebar' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
+
         <ErrorBoundary>
           <Routes>
             <Route path="/login" element={<Login />} />

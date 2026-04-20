@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Shield, AlertTriangle, Eye, EyeOff, Mail, Lock, ArrowLeft, CheckCircle2, Zap, Activity, Globe } from 'lucide-react';
+import { GridScan } from '../components/GridScan';
+
 
 export default function Login() {
     const { signInWithGoogle, signInWithEmail, registerWithEmail, resetPassword } = useAuth();
@@ -67,14 +69,6 @@ export default function Login() {
     };
 
     // Floating particles for background
-    const particles = Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        duration: Math.random() * 15 + 10,
-        delay: Math.random() * 5,
-    }));
 
     return (
         <div style={{
@@ -83,82 +77,31 @@ export default function Login() {
             background: 'linear-gradient(135deg, #0a1628 0%, #0f2035 40%, #0a1628 100%)',
             position: 'absolute', top: 0, left: 0, zIndex: 9999, overflow: 'hidden'
         }}>
-            {/* Animated floating particles */}
-            {particles.map(p => (
-                <motion.div
-                    key={p.id}
-                    style={{
-                        position: 'absolute',
-                        width: p.size, height: p.size,
-                        borderRadius: '50%',
-                        background: `rgba(6, 182, 212, ${0.1 + Math.random() * 0.2})`,
-                        left: `${p.x}%`, top: `${p.y}%`,
-                    }}
-                    animate={{
-                        y: [0, -30, 0],
-                        x: [0, 15, 0],
-                        opacity: [0.2, 0.6, 0.2],
-                    }}
-                    transition={{
-                        duration: p.duration,
-                        delay: p.delay,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                    }}
+            {/* GridScan Background */}
+            <div style={{
+                position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                zIndex: 0, opacity: 0.6
+            }}>
+                <GridScan 
+                    linesColor="#0f172a" 
+                    scanColor="#06b6d4" 
+                    scanOpacity={0.6} 
+                    gridScale={0.08}
+                    bloomIntensity={1.2}
+                    noiseIntensity={0.02}
+                    scanDuration={4}
+                    scanDelay={2}
+                    lineThickness={1.5}
                 />
-            ))}
+            </div>
 
-            {/* Animated glow orbs */}
-            <motion.div
-                style={{
-                    position: 'absolute', top: '15%', left: '25%', width: 500, height: 500,
-                    background: 'radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%)',
-                    filter: 'blur(60px)', zIndex: 0
-                }}
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-                style={{
-                    position: 'absolute', bottom: '10%', right: '20%', width: 400, height: 400,
-                    background: 'radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)',
-                    filter: 'blur(60px)', zIndex: 0
-                }}
-                animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-                style={{
-                    position: 'absolute', top: '50%', right: '40%', width: 300, height: 300,
-                    background: 'radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)',
-                    filter: 'blur(50px)', zIndex: 0
-                }}
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-            />
+            {/* Subtle Overlay to ensure readability */}
+            <div style={{
+                position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                background: 'radial-gradient(circle at center, transparent 0%, rgba(10,22,40,0.4) 100%)',
+                zIndex: 0, pointerEvents: 'none'
+            }} />
 
-            {/* Feature badges floating */}
-            <motion.div
-                style={{ position: 'absolute', top: '12%', right: '10%', display: 'flex', gap: 8, alignItems: 'center', padding: '8px 16px', background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.15)', borderRadius: 20, zIndex: 1 }}
-                initial={{ opacity: 0, x: 50 }} animate={{ opacity: 0.7, x: 0 }} transition={{ delay: 1.5, duration: 1 }}
-            >
-                <Zap size={14} style={{ color: '#06b6d4' }} />
-                <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>ML-Powered Prediction</span>
-            </motion.div>
-            <motion.div
-                style={{ position: 'absolute', bottom: '15%', left: '8%', display: 'flex', gap: 8, alignItems: 'center', padding: '8px 16px', background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.15)', borderRadius: 20, zIndex: 1 }}
-                initial={{ opacity: 0, x: -50 }} animate={{ opacity: 0.7, x: 0 }} transition={{ delay: 2, duration: 1 }}
-            >
-                <Activity size={14} style={{ color: '#8b5cf6' }} />
-                <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Real-Time Monitoring</span>
-            </motion.div>
-            <motion.div
-                style={{ position: 'absolute', top: '25%', left: '6%', display: 'flex', gap: 8, alignItems: 'center', padding: '8px 16px', background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.15)', borderRadius: 20, zIndex: 1 }}
-                initial={{ opacity: 0, x: -50 }} animate={{ opacity: 0.7, x: 0 }} transition={{ delay: 2.5, duration: 1 }}
-            >
-                <Globe size={14} style={{ color: '#10b981' }} />
-                <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>8 Nagpur Hospitals</span>
-            </motion.div>
 
             {/* Main Login Card */}
             <motion.div
