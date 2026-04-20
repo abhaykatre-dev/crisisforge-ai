@@ -83,15 +83,16 @@ export default function Login() {
                 zIndex: 0, opacity: 0.6
             }}>
                 <GridScan 
-                    linesColor="#0f172a" 
-                    scanColor="#06b6d4" 
-                    scanOpacity={0.6} 
-                    gridScale={0.08}
-                    bloomIntensity={1.2}
-                    noiseIntensity={0.02}
-                    scanDuration={4}
-                    scanDelay={2}
-                    lineThickness={1.5}
+                    sensitivity={0.55}
+                    lineThickness={1}
+                    linesColor="#2F293A"
+                    gridScale={0.1}
+                    scanColor="#06b6d4"
+                    scanOpacity={0.4}
+                    enablePost
+                    bloomIntensity={0.8}
+                    chromaticAberration={0.002}
+                    noiseIntensity={0.01}
                 />
             </div>
 
