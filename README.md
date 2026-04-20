@@ -2,9 +2,9 @@
 
 > **Forging Smarter Decisions — Before the Crisis Hits.**
 
-A comprehensive, free & open-source healthcare resource allocation platform for **Nagpur** that **predicts**, **simulates**, **redistributes**, and **alerts** — powered by ML, decision intelligence, and real-time visualization.
+A comprehensive, free & open-source healthcare resource allocation platform that **predicts**, **simulates**, **redistributes**, and **alerts** — powered by ML, decision intelligence, and real-time visualization.
 
-**Built by The Code Alchemist • HackWhack 3.0 • Nagpur**
+**Built by Bit Bandits**
 
 ---
 
@@ -13,13 +13,13 @@ A comprehensive, free & open-source healthcare resource allocation platform for 
 | Feature | Description |
 |---------|-------------|
 | 🔐 **Dual Authentication** | Firebase Google OAuth + Email/Password login with registration |
-| 📊 **Real-Time Dashboard** | Hospital capacity monitoring across 8 Nagpur facilities |
+| 📊 **Real-Time Dashboard** | Hospital capacity monitoring across 8 facilities |
 | 🧪 **Scenario Builder** | Configure crisis simulations with 5 preset disaster scenarios |
 | ⚖️ **Strategy Comparator** | Compare 4 allocation strategies with radar charts |
 | 🚑 **Transfer Hub** | Autonomous inter-hospital patient redistribution (95% threshold rule) |
 | 🧠 **AI Predictor** | ML-powered patient outcome prediction with SHAP explainability |
 | 📱 **Telegram Alerts** | Autonomous crisis notifications via Telegram Bot |
-| 🗺️ **Interactive Map** | Nagpur hospital network map with real GPS coordinates (Leaflet.js) |
+| 🗺️ **Interactive Map** | Hospital network map with real GPS coordinates (Leaflet.js) |
 | 📈 **Reports & Analytics** | Capacity breakdown, regional analysis, CSV + PDF export |
 | 📲 **PWA Support** | Installable on mobile/desktop with offline caching |
 | 🌓 **Light/Dark Theme** | Full dual-theme system with persisted preference |
@@ -177,7 +177,7 @@ Both methods are handled by Firebase Authentication. The app shows a login scree
 ## 📁 Project Structure
 
 ```
-HackWhack/
+crisisforge-ai/
 ├── backend/
 │   ├── main.py                       # FastAPI app (15+ endpoints)
 │   ├── prediction_engine.py          # ARIMA + Monte Carlo forecasting
@@ -281,7 +281,7 @@ VITE_API_URL=https://your-backend-url.onrender.com
 
 ## 👨‍💻 Team
 
-**The Code Alchemist** — HackWhack 3.0 • Nagpur
+**Bit Bandits** — HackWhack 3.0 • Nagpur
 
 ---
 
