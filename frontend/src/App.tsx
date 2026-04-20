@@ -10,6 +10,8 @@ import AIPredictor from './pages/AIPredictor';
 import TelegramPanel from './pages/TelegramPanel';
 import HospitalMap from './pages/HospitalMap';
 import './index.css';
+import { GridScan } from './components/GridScan';
+
 
 /* ─── Error Boundary ─── */
 interface EBState { hasError: boolean; error?: Error }
@@ -75,25 +77,53 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 
 function AppContent() {
   const location = useLocation();
+  const { user, loading, isAuthEnabled } = useAuth();
+
+  // Show the sidebar/background only when the user is authenticated (or auth is disabled)
+  const isAuthenticated = !isAuthEnabled || !!user;
   const isLoginPage = location.pathname === '/login';
+  const showShell = isAuthenticated && !isLoginPage;
 
   return (
     <div className="app-layout">
-      {!isLoginPage && <Sidebar />}
-      <main className={`main-content ${isLoginPage ? 'no-sidebar' : ''}`}>
-        <ErrorBoundary>
-          <Routes>
-            <Route path="/login" element={<Login />} />
+      {showShell && <Sidebar />}
+      {showShell && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 0, opacity: 0.4, pointerEvents: 'none' }}>
+          <GridScan
+            sensitivity={0.55}
+            lineThickness={1}
+            linesColor="#2F293A"
+            gridScale={0.1}
+            scanColor="#06b6d4"
+            scanOpacity={0.3}
+            enablePost
+            bloomIntensity={0.5}
+            chromaticAberration={0.002}
+            noiseIntensity={0.01}
+          />
+        </div>
+      )}
+      <main className={`main-content ${!showShell ? 'no-sidebar' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
 
-            <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/scenarios" element={<ProtectedRoute><ScenarioBuilder /></ProtectedRoute>} />
-            <Route path="/compare" element={<ProtectedRoute><StrategyComparator /></ProtectedRoute>} />
-            <Route path="/transfers" element={<ProtectedRoute><TransferHub /></ProtectedRoute>} />
-            <Route path="/ai" element={<ProtectedRoute><AIPredictor /></ProtectedRoute>} />
-            <Route path="/telegram" element={<ProtectedRoute><TelegramPanel /></ProtectedRoute>} />
-            <Route path="/map" element={<ProtectedRoute><HospitalMap /></ProtectedRoute>} />
-            <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
-          </Routes>
+        <ErrorBoundary>
+          {loading ? (
+            <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#06b6d4' }}>
+              <p>Loading session...</p>
+            </div>
+          ) : (
+            <Routes>
+              <Route path="/login" element={<Login />} />
+
+              <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/scenarios" element={<ProtectedRoute><ScenarioBuilder /></ProtectedRoute>} />
+              <Route path="/compare" element={<ProtectedRoute><StrategyComparator /></ProtectedRoute>} />
+              <Route path="/transfers" element={<ProtectedRoute><TransferHub /></ProtectedRoute>} />
+              <Route path="/ai" element={<ProtectedRoute><AIPredictor /></ProtectedRoute>} />
+              <Route path="/telegram" element={<ProtectedRoute><TelegramPanel /></ProtectedRoute>} />
+              <Route path="/map" element={<ProtectedRoute><HospitalMap /></ProtectedRoute>} />
+              <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+            </Routes>
+          )}
         </ErrorBoundary>
       </main>
     </div>
