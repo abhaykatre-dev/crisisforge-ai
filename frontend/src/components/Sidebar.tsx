@@ -61,7 +61,7 @@ export default function Sidebar() {
 
             <aside className={`sidebar ${mobileOpen ? 'sidebar-open' : ''}`}>
                 <div className="sidebar-logo">
-                    <div className="logo-icon">🔥</div>
+                    <img src="/logo.jpg" alt="Logo" className="logo-icon" />
                     <div>
                         <h1>CrisisForge AI</h1>
                         <span>Resource Allocation</span>

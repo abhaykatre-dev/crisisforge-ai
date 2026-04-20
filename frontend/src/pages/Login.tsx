@@ -177,19 +177,19 @@ export default function Login() {
                 }}
             >
                 {/* Animated logo */}
-                <motion.div
+                <motion.img
+                    src="/logo.jpg"
+                    alt="Logo"
                     style={{
                         width: 72, height: 72, borderRadius: 20,
-                        background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        marginBottom: 20, fontSize: '2.2rem',
+                        marginBottom: 20,
                         boxShadow: '0 12px 30px -5px rgba(6,182,212,0.4)',
+                        objectFit: 'cover',
+                        background: '#fff'
                     }}
                     animate={{ boxShadow: ['0 12px 30px -5px rgba(6,182,212,0.4)', '0 12px 30px -5px rgba(139,92,246,0.4)', '0 12px 30px -5px rgba(6,182,212,0.4)'] }}
                     transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                    🔥
-                </motion.div>
+                />
 
                 <h1 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#f1f5f9', marginBottom: 6, textAlign: 'center', letterSpacing: '-0.02em' }}>
                     CrisisForge AI
