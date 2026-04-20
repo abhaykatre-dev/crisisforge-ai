@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Shield, AlertTriangle, Eye, EyeOff, Mail, Lock, ArrowLeft, CheckCircle2, Zap, Activity, Globe } from 'lucide-react';
+import { Shield, AlertTriangle, Eye, EyeOff, Mail, Lock, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { GridScan } from '../components/GridScan';
 
 
