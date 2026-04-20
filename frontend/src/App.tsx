@@ -10,7 +10,6 @@ import AIPredictor from './pages/AIPredictor';
 import TelegramPanel from './pages/TelegramPanel';
 import HospitalMap from './pages/HospitalMap';
 import './index.css';
-import DotField from './components/DotField';
 import { GridScan } from './components/GridScan';
 
 
