@@ -52,7 +52,7 @@ function StatBadge({ icon: Icon, label, value, color }: { icon: typeof Activity,
             fontSize: '0.72rem'
         }}>
             <Icon size={12} color={color} />
-            <span style={{ color: '#94a3b8' }}>{label}</span>
+            <span style={{ color: 'var(--text-muted)' }}>{label}</span>
             <span style={{ fontWeight: 700, color }}>{value}</span>
         </div>
     );
@@ -199,33 +199,38 @@ export default function HospitalMap() {
     const warningCount = hospitals.filter(h => { const p = getOccupancyPct(h.occupied_beds, h.total_beds); return p >= 75 && p < 90; }).length;
 
     return (
-        <div style={{ padding: '28px 32px', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ padding: 0, height: '100vh', display: 'flex', flexDirection: 'column' }}>
             {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                <div>
-                    <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <MapPin size={28} color="var(--accent-cyan)" />
-                        Hospital Network Map
-                    </h1>
-                    <p style={{ color: 'var(--text-secondary)', margin: '4px 0 0' }}>Live capacity monitoring across Nagpur healthcare facilities</p>
+            <div className="page-header" style={{ marginBottom: 16 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <span className="page-header-icon" style={{ color: 'var(--accent-cyan)' }}>
+                            <MapPin size={18} />
+                        </span>
+                        <div>
+                            <h2 style={{ margin: 0 }}>Hospital Network Map</h2>
+                            <p style={{ margin: '2px 0 0', fontSize: '0.84rem' }}>Live capacity monitoring across Nagpur healthcare facilities</p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={fetchData}
+                        style={{
+                            display: 'flex', alignItems: 'center', gap: 8,
+                            padding: '9px 18px', borderRadius: 10,
+                            background: 'linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%)',
+                            border: 'none', color: '#fff', fontWeight: 600,
+                            fontSize: '0.85rem', cursor: 'pointer',
+                            boxShadow: '0 4px 15px rgba(6, 182, 212, 0.3)',
+                            transition: 'transform 0.2s, box-shadow 0.2s',
+                            flexShrink: 0,
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                    >
+                        <RefreshCw size={15} />
+                        Refresh Data
+                    </button>
                 </div>
-                <button
-                    onClick={fetchData}
-                    style={{
-                        display: 'flex', alignItems: 'center', gap: 8,
-                        padding: '10px 20px', borderRadius: 10,
-                        background: 'linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%)',
-                        border: 'none', color: '#fff', fontWeight: 600,
-                        fontSize: '0.85rem', cursor: 'pointer',
-                        boxShadow: '0 4px 15px rgba(6, 182, 212, 0.3)',
-                        transition: 'transform 0.2s, box-shadow 0.2s',
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
-                >
-                    <RefreshCw size={16} />
-                    Refresh Data
-                </button>
             </div>
 
             {/* Map Container */}

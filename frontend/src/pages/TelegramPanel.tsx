@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Bot, Bell, RefreshCw, AlertTriangle, Ambulance, CheckCircle2, Mail, MessageSquare, Smartphone } from 'lucide-react';
 import { api } from '../api';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function TelegramPanel() {
+    const { theme } = useTheme();
+    const isLight = theme === 'light';
     const [botToken, setBotToken] = useState('');
     const [chatId, setChatId] = useState('');
     const [messageType, setMessageType] = useState('alerts');
@@ -56,45 +59,59 @@ export default function TelegramPanel() {
     return (
         <div>
             <motion.div className="page-header" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-                <h2>🔔 Notifications Center</h2>
-                <p>Multi-channel crisis alert management — Push, Email & SMS</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
+                    <span style={{ color: 'var(--accent-cyan)' }}><Bell size={18} /></span>
+                    <h2>Notifications Center</h2>
+                </div>
+                <p>Multi-channel crisis alert management — Push, Email &amp; SMS</p>
             </motion.div>
 
             {/* Notification Channel Tabs */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
                 style={{ display: 'flex', gap: 12, marginBottom: 24 }}
             >
+                {/* Push — Active */}
                 <div style={{
-                    flex: 1, padding: '16px 20px', borderRadius: 14,
-                    background: 'rgba(6,182,212,0.08)', border: '2px solid rgba(6,182,212,0.3)',
-                    display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer'
+                    flex: 1, padding: '14px 18px', borderRadius: 14,
+                    background: isLight ? '#f0f4fc' : 'rgba(6,182,212,0.08)',
+                    border: '2px solid rgba(6,182,212,0.35)',
+                    display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer',
+                    boxShadow: isLight ? '0 2px 14px rgba(6,182,212,0.15)' : 'none',
                 }}>
-                    <Smartphone size={20} style={{ color: '#06b6d4' }} />
+                    <Smartphone size={20} style={{ color: '#06b6d4', flexShrink: 0 }} />
                     <div>
-                        <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>Push Notifications</p>
-                        <p style={{ fontSize: '0.72rem', color: '#06b6d4' }}>✅ Active — via Telegram Bot API</p>
+                        <p style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>Push Notifications</p>
+                        <p style={{ fontSize: '0.72rem', color: '#06b6d4', margin: '3px 0 0' }}>✅ Active — via Telegram Bot API</p>
                     </div>
                 </div>
+
+                {/* Email — Planned */}
                 <div style={{
-                    flex: 1, padding: '16px 20px', borderRadius: 14,
-                    background: 'var(--bg-card)', border: '1px solid var(--border-subtle)',
-                    display: 'flex', alignItems: 'center', gap: 12, opacity: 0.7, cursor: 'default'
+                    flex: 1, padding: '14px 18px', borderRadius: 14,
+                    background: isLight ? '#f0f4fc' : 'var(--bg-card)',
+                    border: isLight ? '1.5px solid rgba(139,92,246,0.25)' : '1.5px solid var(--border-subtle)',
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    boxShadow: isLight ? '0 2px 12px rgba(12,26,46,0.08)' : 'var(--shadow-card)',
                 }}>
-                    <Mail size={20} style={{ color: '#8b5cf6' }} />
+                    <Mail size={20} style={{ color: '#8b5cf6', flexShrink: 0 }} />
                     <div>
-                        <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>Email Alerts</p>
-                        <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>SendGrid API — Planned</p>
+                        <p style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>Email Alerts</p>
+                        <p style={{ fontSize: '0.72rem', color: isLight ? '#64748b' : 'var(--text-muted)', margin: '3px 0 0' }}>SendGrid API — Planned</p>
                     </div>
                 </div>
+
+                {/* SMS — Planned */}
                 <div style={{
-                    flex: 1, padding: '16px 20px', borderRadius: 14,
-                    background: 'var(--bg-card)', border: '1px solid var(--border-subtle)',
-                    display: 'flex', alignItems: 'center', gap: 12, opacity: 0.7, cursor: 'default'
+                    flex: 1, padding: '14px 18px', borderRadius: 14,
+                    background: isLight ? '#f0f4fc' : 'var(--bg-card)',
+                    border: isLight ? '1.5px solid rgba(16,185,129,0.25)' : '1.5px solid var(--border-subtle)',
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    boxShadow: isLight ? '0 2px 12px rgba(12,26,46,0.08)' : 'var(--shadow-card)',
                 }}>
-                    <MessageSquare size={20} style={{ color: '#10b981' }} />
+                    <MessageSquare size={20} style={{ color: '#10b981', flexShrink: 0 }} />
                     <div>
-                        <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>SMS Alerts</p>
-                        <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Twilio API — Planned</p>
+                        <p style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>SMS Alerts</p>
+                        <p style={{ fontSize: '0.72rem', color: isLight ? '#64748b' : 'var(--text-muted)', margin: '3px 0 0' }}>Twilio API — Planned</p>
                     </div>
                 </div>
             </motion.div>
@@ -105,9 +122,9 @@ export default function TelegramPanel() {
                     <h3 style={{ marginBottom: 16 }}><Bot size={18} style={{ color: '#06b6d4' }} /> Bot Configuration</h3>
 
                     {/* Setup Instructions */}
-                    <div style={{ padding: '12px 16px', background: 'rgba(6,182,212,0.05)', borderRadius: 8, marginBottom: 16, borderLeft: '3px solid #06b6d4' }}>
-                        <p style={{ fontSize: '0.82rem', color: '#94a3b8', marginBottom: 8 }}>Quick Setup:</p>
-                        <ol style={{ fontSize: '0.78rem', color: '#64748b', paddingLeft: 16, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <div style={{ padding: '12px 16px', background: 'var(--bg-tertiary)', borderRadius: 8, marginBottom: 16, borderLeft: '3px solid #06b6d4' }}>
+                        <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginBottom: 8 }}>Quick Setup:</p>
+                        <ol style={{ fontSize: '0.78rem', color: 'var(--text-muted)', paddingLeft: 16, display: 'flex', flexDirection: 'column', gap: 4 }}>
                             <li>Message <strong style={{ color: '#06b6d4' }}>@BotFather</strong> on Telegram → /newbot</li>
                             <li>Copy the bot token below</li>
                             <li>Message <strong style={{ color: '#06b6d4' }}>@userinfobot</strong> → get your Chat ID</li>
@@ -124,9 +141,10 @@ export default function TelegramPanel() {
                                 value={botToken}
                                 onChange={e => setBotToken(e.target.value)}
                                 style={{
-                                    width: '100%', padding: '10px 14px', background: 'rgba(148,163,184,0.06)',
-                                    border: '1px solid rgba(148,163,184,0.15)', borderRadius: 8,
-                                    color: '#f1f5f9', fontSize: '0.85rem', outline: 'none',
+                                    width: '100%', padding: '10px 14px',
+                                    background: 'var(--bg-tertiary)',
+                                    border: '1px solid var(--border-subtle)', borderRadius: 8,
+                                    color: 'var(--text-primary)', fontSize: '0.85rem', outline: 'none',
                                 }}
                             />
                         </div>
@@ -138,16 +156,17 @@ export default function TelegramPanel() {
                                 value={chatId}
                                 onChange={e => setChatId(e.target.value)}
                                 style={{
-                                    width: '100%', padding: '10px 14px', background: 'rgba(148,163,184,0.06)',
-                                    border: '1px solid rgba(148,163,184,0.15)', borderRadius: 8,
-                                    color: '#f1f5f9', fontSize: '0.85rem', outline: 'none',
+                                    width: '100%', padding: '10px 14px',
+                                    background: 'var(--bg-tertiary)',
+                                    border: '1px solid var(--border-subtle)', borderRadius: 8,
+                                    color: 'var(--text-primary)', fontSize: '0.85rem', outline: 'none',
                                 }}
                             />
                         </div>
                     </div>
 
                     {/* Message Type */}
-                    <h4 style={{ margin: '16px 0 8px', fontSize: '0.85rem', color: '#94a3b8' }}>Message Type</h4>
+                    <h4 style={{ margin: '16px 0 8px', fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Message Type</h4>
                     <div className="tab-group" style={{ width: '100%' }}>
                         <button className={`tab-btn ${messageType === 'alerts' ? 'active' : ''}`} onClick={() => handleTypeChange('alerts')}>
                             <Bell size={14} /> Alerts
@@ -211,7 +230,7 @@ export default function TelegramPanel() {
 
                     {/* Alert Thresholds */}
                     <div style={{ marginTop: 16 }}>
-                        <h4 style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: 8 }}>⚙️ Alert Thresholds</h4>
+                        <h4 style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: 8, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Alert Thresholds</h4>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                             {[
                                 { label: 'Bed Critical', value: '90%', color: '#ef4444' },
@@ -230,8 +249,8 @@ export default function TelegramPanel() {
                     </div>
 
                     {/* Bot Status */}
-                    <div style={{ marginTop: 16, padding: '10px 14px', background: 'rgba(148,163,184,0.04)', borderRadius: 8 }}>
-                        <p style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                    <div style={{ marginTop: 16, padding: '10px 14px', background: 'var(--bg-tertiary)', borderRadius: 8, border: '1px solid var(--border-subtle)' }}>
+                        <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', margin: 0 }}>
                             Bot Status: {status ? (status.configured ? '🟢 Configured (env vars)' : '🟡 Not configured — use the form above') : '⚪ Checking...'}
                         </p>
                     </div>

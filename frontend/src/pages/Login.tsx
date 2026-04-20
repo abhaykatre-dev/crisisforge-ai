@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
+import { IconSun, IconMoon } from '@tabler/icons-react';
 import { Shield, AlertTriangle, Eye, EyeOff, Mail, Lock, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { GridScan } from '../components/GridScan';
 
@@ -9,6 +11,8 @@ import { GridScan } from '../components/GridScan';
 export default function Login() {
     const { signInWithGoogle, signInWithEmail, registerWithEmail, resetPassword } = useAuth();
     const navigate = useNavigate();
+    const { theme, toggleTheme } = useTheme();
+    const isLight = theme === 'light';
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
@@ -74,21 +78,25 @@ export default function Login() {
         <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             minHeight: '100vh', width: '100vw',
-            background: 'linear-gradient(135deg, #0a1628 0%, #0f2035 40%, #0a1628 100%)',
-            position: 'absolute', top: 0, left: 0, zIndex: 9999, overflow: 'hidden'
+            background: isLight
+                ? 'linear-gradient(135deg, #dbeafe 0%, #e8f0fe 40%, #ede9fe 100%)'
+                : 'linear-gradient(135deg, #0a1628 0%, #0f2035 40%, #0a1628 100%)',
+            position: 'absolute', top: 0, left: 0, zIndex: 9999, overflow: 'hidden',
+            transition: 'background 0.5s ease',
         }}>
             {/* GridScan Background */}
             <div style={{
                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                zIndex: 0, opacity: 0.6
+                zIndex: 0, opacity: isLight ? 0.12 : 0.6,
+                transition: 'opacity 0.5s ease',
             }}>
                 <GridScan 
                     sensitivity={0.55}
                     lineThickness={1}
-                    linesColor="#2F293A"
+                    linesColor={isLight ? '#a0aec0' : '#2F293A'}
                     gridScale={0.1}
                     scanColor="#06b6d4"
-                    scanOpacity={0.4}
+                    scanOpacity={isLight ? 0.2 : 0.4}
                     enablePost
                     bloomIntensity={0.8}
                     chromaticAberration={0.002}
@@ -96,12 +104,47 @@ export default function Login() {
                 />
             </div>
 
-            {/* Subtle Overlay to ensure readability */}
+            {/* Overlay */}
             <div style={{
                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                background: 'radial-gradient(circle at center, transparent 0%, rgba(10,22,40,0.4) 100%)',
-                zIndex: 0, pointerEvents: 'none'
+                background: isLight
+                    ? 'radial-gradient(circle at center, transparent 0%, rgba(219,234,254,0.3) 100%)'
+                    : 'radial-gradient(circle at center, transparent 0%, rgba(10,22,40,0.4) 100%)',
+                zIndex: 0, pointerEvents: 'none', transition: 'background 0.5s ease',
             }} />
+
+            <motion.button
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
+                style={{
+                    position: 'fixed', top: 20, right: 20, zIndex: 10,
+                    background: isLight ? 'rgba(255,255,255,0.85)' : 'rgba(15,32,53,0.75)',
+                    backdropFilter: 'blur(12px)',
+                    border: isLight ? '1px solid rgba(6,182,212,0.25)' : '1px solid rgba(148,163,184,0.2)',
+                    borderRadius: 12,
+                    padding: '9px 16px',
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    color: isLight ? '#4f46e5' : '#fbbf24',
+                    cursor: 'pointer',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    fontFamily: 'Roboto Condensed, sans-serif',
+                    letterSpacing: '0.5px',
+                    transition: 'all 0.3s ease',
+                }}
+            >
+                <motion.span
+                    key={isLight ? 'moon' : 'sun'}
+                    initial={{ rotate: -30, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    style={{ display: 'flex' }}
+                >
+                    {isLight ? <IconMoon size={16} /> : <IconSun size={16} />}
+                </motion.span>
+                {isLight ? 'Dark Mode' : 'Light Mode'}
+            </motion.button>
 
 
             {/* Main Login Card */}
@@ -110,14 +153,17 @@ export default function Login() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                    background: 'rgba(15,32,53,0.6)',
+                    background: isLight ? 'rgba(255,255,255,0.92)' : 'rgba(15,32,53,0.6)',
                     backdropFilter: 'blur(30px)',
-                    border: '1px solid rgba(148,163,184,0.1)',
+                    border: isLight ? '1px solid rgba(6,182,212,0.2)' : '1px solid rgba(148,163,184,0.1)',
                     borderRadius: 28, padding: '44px 36px',
                     width: '100%', maxWidth: 420,
                     display: 'flex', flexDirection: 'column', alignItems: 'center',
-                    boxShadow: '0 30px 60px -15px rgba(0,0,0,0.6), 0 0 40px rgba(6,182,212,0.05)',
+                    boxShadow: isLight
+                        ? '0 20px 60px rgba(59,130,246,0.15), 0 0 0 1px rgba(6,182,212,0.1)'
+                        : '0 30px 60px -15px rgba(0,0,0,0.6), 0 0 40px rgba(6,182,212,0.05)',
                     zIndex: 1, position: 'relative',
+                    transition: 'background 0.4s ease, box-shadow 0.4s ease',
                 }}
             >
                 {/* Animated logo */}
@@ -125,20 +171,26 @@ export default function Login() {
                     src="/logo.jpg"
                     alt="Logo"
                     style={{
-                        width: 72, height: 72, borderRadius: 20,
+                        width: 80, height: 80, borderRadius: '50%',
                         marginBottom: 20,
-                        boxShadow: '0 12px 30px -5px rgba(6,182,212,0.4)',
+                        boxShadow: '0 0 0 3px rgba(6,182,212,0.4), 0 12px 30px -5px rgba(6,182,212,0.5)',
                         objectFit: 'cover',
-                        background: '#fff'
+                        background: '#0a1628'
                     }}
-                    animate={{ boxShadow: ['0 12px 30px -5px rgba(6,182,212,0.4)', '0 12px 30px -5px rgba(139,92,246,0.4)', '0 12px 30px -5px rgba(6,182,212,0.4)'] }}
+                    animate={{
+                        boxShadow: [
+                            '0 0 0 3px rgba(6,182,212,0.4), 0 12px 30px -5px rgba(6,182,212,0.5)',
+                            '0 0 0 4px rgba(139,92,246,0.5), 0 12px 30px -5px rgba(139,92,246,0.5)',
+                            '0 0 0 3px rgba(6,182,212,0.4), 0 12px 30px -5px rgba(6,182,212,0.5)'
+                        ]
+                    }}
                     transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                 />
 
-                <h1 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#f1f5f9', marginBottom: 6, textAlign: 'center', letterSpacing: '-0.02em' }}>
+                <h1 style={{ fontFamily: 'Roboto Condensed, sans-serif', fontSize: '1.8rem', fontWeight: 700, color: isLight ? '#0c1a2e' : '#f1f5f9', marginBottom: 6, textAlign: 'center', letterSpacing: '-0.02em' }}>
                     CrisisForge AI
                 </h1>
-                <p style={{ color: '#64748b', fontSize: '0.88rem', marginBottom: 28, textAlign: 'center', lineHeight: 1.6 }}>
+                <p style={{ fontFamily: 'Roboto, sans-serif', color: isLight ? '#475569' : '#94a3b8', fontSize: '0.86rem', marginBottom: 28, textAlign: 'center', lineHeight: 1.6 }}>
                     Secure healthcare resource allocation<br />and predictive intelligence platform.
                 </p>
 
