@@ -217,7 +217,11 @@ function TopNav() {
               flexShrink: 0,
               boxShadow: showProfile ? '0 0 0 2px var(--border-active)' : 'none',
             }}>
-            CF
+            {user?.displayName 
+              ? user.displayName.split(' ').map((n: string) => n[0]).slice(0,2).join('').toUpperCase() 
+              : user?.email 
+                ? user.email.substring(0, 2).toUpperCase() 
+                : 'OP'}
           </div>
 
           {/* Profile Modal */}

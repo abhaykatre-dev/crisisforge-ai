@@ -82,7 +82,7 @@ export default function Sidebar() {
                         src={isLight ? "/logo-light.png" : "/logo-dark.png"}
                         alt="CrisisForge"
                         style={{
-                            height: '200px',
+                            height: '100px',
                             width: 'auto',
                             filter: 'drop-shadow(0 0 8px rgba(6,182,212,0.15))',
                             objectFit: 'contain'
