@@ -1,6 +1,6 @@
 <div align="center">
   <div style="margin-bottom: 24px; filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.08));">
-     <img src="frontend/public/logo-light.png" style="height: 100px; width: auto; object-fit: contain;" />
+     <img src="frontend/public/logo-light.png" style="height: 140px; width: auto; object-fit: contain;" />
   </div>
   <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; letter-spacing: -0.025em; color: #0f172a; margin-bottom: 8px;">CrisisForge AI</h1>
   <p style="font-size: 1.1rem; color: #64748b; margin-top: 0;"><strong>System Value Analysis & Operation Intelligence</strong></p>

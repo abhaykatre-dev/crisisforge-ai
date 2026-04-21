@@ -179,7 +179,7 @@ export default function Login() {
                     <img 
                         src={isLight ? "/logo-light.png" : "/logo-dark.png"} 
                         alt="CrisisForge" 
-                        style={{ height: '72px', width: 'auto', objectFit: 'contain' }}
+                        style={{ height: '92px', width: 'auto', objectFit: 'contain' }}
                     />
                 </motion.div>
 
