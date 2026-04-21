@@ -4,6 +4,7 @@ import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell
 } from 'recharts';
 import { Shield, AlertTriangle, Users, Clock } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface AuditData {
     records_analysed: number;
@@ -37,6 +38,8 @@ function scoreLabel(s: number) {
 }
 
 export default function EquityDashboard() {
+    const { theme } = useTheme();
+    const isLight = theme === 'light';
     const [audit, setAudit] = useState<AuditData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -92,7 +95,7 @@ export default function EquityDashboard() {
             <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 style={{
-                    background: `linear-gradient(135deg, ${color}18 0%, rgba(10,22,40,0.9) 100%)`,
+                    background: isLight ? `linear-gradient(135deg, ${color}15 0%, rgba(255,255,255,1) 100%)` : `linear-gradient(135deg, ${color}18 0%, rgba(10,22,40,0.9) 100%)`,
                     border: `1px solid ${color}44`,
                     borderRadius: 16,
                     padding: '28px 32px',
@@ -196,7 +199,7 @@ export default function EquityDashboard() {
                             <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                             <YAxis tick={{ fontSize: 11 }} unit=" min" />
                             <Tooltip
-                                contentStyle={{ background: '#0a1628', border: '1px solid rgba(6,182,212,0.3)', borderRadius: 8 }}
+                                contentStyle={{ background: isLight ? '#ffffff' : '#0a1628', border: '1px solid rgba(6,182,212,0.3)', borderRadius: 8, color: isLight ? '#0f172a' : '#fff' }}
                                 formatter={(v: number) => [`${v.toFixed(1)} min`, 'Avg Wait']}
                             />
                             <Bar dataKey="wait" radius={[8, 8, 0, 0]}>
@@ -216,7 +219,7 @@ export default function EquityDashboard() {
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                             <YAxis tick={{ fontSize: 11 }} domain={[0, 10]} />
-                            <Tooltip contentStyle={{ background: '#0a1628', border: '1px solid rgba(167,139,250,0.3)', borderRadius: 8 }} />
+                            <Tooltip contentStyle={{ background: isLight ? '#ffffff' : '#0a1628', border: '1px solid rgba(167,139,250,0.3)', borderRadius: 8, color: isLight ? '#0f172a' : '#fff' }} />
                             <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                                 {severityData.map((d, i) => <Cell key={i} fill={d.fill} />)}
                             </Bar>
