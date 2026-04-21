@@ -21,22 +21,22 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-    { path: '/',          label: 'DASHBOARD',    sub: 'Overview',        icon: IconLayoutDashboard, color: '#2563eb', group: 'CORE' },
-    { path: '/scenarios', label: 'SCENARIOS',    sub: 'Crisis Builder',   icon: IconUsers,           color: '#8b5cf6', group: 'CORE' },
-    { path: '/compare',   label: 'COMPARATOR',   sub: 'Strategy Matrix',  icon: IconMicroscope,      color: '#06b6d4', group: 'CORE' },
-    { path: '/transfers', label: 'TRANSFERS',    sub: 'Transfer Hub',     icon: IconTransferIn,      color: '#10b981', group: 'OPERATIONS' },
-    { path: '/ai',        label: 'AI PREDICTOR', sub: 'ML Engine',        icon: IconBrain,           color: '#f59e0b', group: 'OPERATIONS' },
-    { path: '/equity',    label: 'EQUITY AUDIT', sub: 'Fairness Engine',  icon: IconShieldHalf,      color: '#ef4444', group: 'OPERATIONS' },
-    { path: '/map',       label: 'HOSPITAL MAP', sub: 'Geo View',         icon: IconMap,             color: '#14b8a6', group: 'SYSTEM' },
-    { path: '/reports',   label: 'ANALYTICS',    sub: 'Reports',          icon: IconChartBar,        color: '#a78bfa', group: 'SYSTEM' },
+    { path: '/', label: 'DASHBOARD', sub: 'Overview', icon: IconLayoutDashboard, color: '#2563eb', group: 'CORE' },
+    { path: '/scenarios', label: 'SCENARIOS', sub: 'Crisis Builder', icon: IconUsers, color: '#8b5cf6', group: 'CORE' },
+    { path: '/compare', label: 'COMPARATOR', sub: 'Strategy Matrix', icon: IconMicroscope, color: '#06b6d4', group: 'CORE' },
+    { path: '/transfers', label: 'TRANSFERS', sub: 'Transfer Hub', icon: IconTransferIn, color: '#10b981', group: 'OPERATIONS' },
+    { path: '/ai', label: 'AI PREDICTOR', sub: 'ML Engine', icon: IconBrain, color: '#f59e0b', group: 'OPERATIONS' },
+    { path: '/equity', label: 'EQUITY AUDIT', sub: 'Fairness Engine', icon: IconShieldHalf, color: '#ef4444', group: 'OPERATIONS' },
+    { path: '/map', label: 'HOSPITAL MAP', sub: 'Geo View', icon: IconMap, color: '#14b8a6', group: 'SYSTEM' },
+    { path: '/reports', label: 'ANALYTICS', sub: 'Reports', icon: IconChartBar, color: '#a78bfa', group: 'SYSTEM' },
 ];
 
 const GROUPS = ['CORE', 'OPERATIONS', 'SYSTEM'];
 
 export default function Sidebar() {
-    const location  = useLocation();
-    const navigate  = useNavigate();
-    const { logOut }   = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { logOut } = useAuth();
     const { theme, toggleTheme } = useTheme();
     const [, setMobileOpen] = useState(false);
     const isLight = theme === 'light';
@@ -68,9 +68,9 @@ export default function Sidebar() {
                 gap: 20
             }}>
                 {/* Logo Area — Complete Logo */}
-                <div 
+                <div
                     onClick={() => navigate('/')}
-                    style={{ 
+                    style={{
                         cursor: 'pointer',
                         display: 'flex',
                         flexDirection: 'column',
@@ -78,11 +78,11 @@ export default function Sidebar() {
                         padding: '8px 0'
                     }}
                 >
-                    <img 
-                        src={isLight ? "/logo-light.png" : "/logo-dark.png"} 
+                    <img
+                        src={isLight ? "/logo-light.png" : "/logo-dark.png"}
                         alt="CrisisForge"
                         style={{
-                            height: '64px',
+                            height: '200px',
                             width: 'auto',
                             filter: 'drop-shadow(0 0 8px rgba(6,182,212,0.15))',
                             objectFit: 'contain'

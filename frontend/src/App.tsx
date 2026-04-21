@@ -104,7 +104,7 @@ function TopNav() {
         <img 
           src={isLight ? "/logo-light.png" : "/logo-dark.png"} 
           alt="CrisisForge" 
-          style={{ height: '40px', width: 'auto', cursor: 'pointer', objectFit: 'contain' }}
+          style={{ height: '50px', width: 'auto', cursor: 'pointer', objectFit: 'contain' }}
           onClick={() => navigate('/')}
         />
 
