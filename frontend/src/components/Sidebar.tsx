@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-    IconLayoutDashboard, IconUsers, IconMicroscope, IconActivity,
-    IconBrain, IconSettings, IconAlertTriangle, IconLogout,
-    IconSun, IconMoon, IconBell, IconMap, IconChartBar,
+    IconLayoutDashboard, IconUsers, IconMicroscope,
+    IconBrain, IconAlertTriangle, IconLogout,
+    IconSun, IconMoon, IconMap, IconChartBar,
     IconShieldHalf, IconTransferIn,
 } from '@tabler/icons-react';
 import { useAuth } from '../contexts/AuthContext';

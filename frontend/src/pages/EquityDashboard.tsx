@@ -79,10 +79,7 @@ export default function EquityDashboard() {
         { name: 'Urban Severity', value: audit.avg_severity_urban, fill: '#60a5fa' },
     ];
 
-    const transferData = [
-        { name: 'Rural', transfers: audit.multi_transfer_rural, fill: '#f87171' },
-        { name: 'Urban', transfers: audit.multi_transfer_urban, fill: '#34d399' },
-    ];
+
 
     return (
         <div>
@@ -200,7 +197,7 @@ export default function EquityDashboard() {
                             <YAxis tick={{ fontSize: 11 }} unit=" min" />
                             <Tooltip
                                 contentStyle={{ background: isLight ? '#ffffff' : '#0a1628', border: '1px solid rgba(6,182,212,0.3)', borderRadius: 8, color: isLight ? '#0f172a' : '#fff' }}
-                                formatter={(v: number) => [`${v.toFixed(1)} min`, 'Avg Wait']}
+                                formatter={(v: any) => [`${Number(v || 0).toFixed(1)} min`, 'Avg Wait']}
                             />
                             <Bar dataKey="wait" radius={[8, 8, 0, 0]}>
                                 {waitData.map((d, i) => <Cell key={i} fill={d.fill} />)}
