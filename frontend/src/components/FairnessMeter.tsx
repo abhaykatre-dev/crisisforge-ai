@@ -14,7 +14,7 @@ interface FairnessData {
 
 // ─── Helpers ──────────────────────────────────────────────────────
 const POLL_INTERVAL_MS = 10_000;
-const API_BASE = 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 function getColor(score: number): string {
   if (score >= 0.9) return '#10b981';

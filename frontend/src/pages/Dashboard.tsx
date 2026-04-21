@@ -36,7 +36,7 @@ export default function Dashboard() {
                     {error || 'Failed to load data'}
                 </p>
                 <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 8 }}>
-                    Make sure the backend is running at <code style={{ color: '#06b6d4' }}>http://localhost:8000</code>
+                    Make sure the backend is running at <code style={{ color: '#06b6d4' }}>{import.meta.env.VITE_API_URL || 'http://localhost:8000'}</code>
                 </p>
                 <button className="btn btn-primary" style={{ marginTop: 16 }} onClick={() => window.location.reload()}>
                     Retry
