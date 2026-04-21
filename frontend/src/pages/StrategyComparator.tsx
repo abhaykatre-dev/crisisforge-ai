@@ -144,7 +144,7 @@ export default function StrategyComparator() {
                                     </div>
                                     <div className="strategy-metric">
                                         <span className="metric-label">Total Treated</span>
-                                        <span className="metric-value" style={{ color: '#f1f5f9' }}>{s.summary.total_treated.toLocaleString()}</span>
+                                        <span className="metric-value" style={{ color: 'var(--text-primary)' }}>{s.summary.total_treated.toLocaleString()}</span>
                                     </div>
                                     <div className="strategy-metric">
                                         <span className="metric-label">Denied Care</span>
@@ -156,7 +156,7 @@ export default function StrategyComparator() {
                                     </div>
                                     <div className="strategy-metric">
                                         <span className="metric-label">Avg Wait (hrs)</span>
-                                        <span className="metric-value" style={{ color: '#94a3b8' }}>{s.summary.avg_wait_time}</span>
+                                        <span className="metric-value" style={{ color: 'var(--text-secondary)' }}>{s.summary.avg_wait_time}</span>
                                     </div>
                                     <div className="strategy-metric">
                                         <span className="metric-label">Avg Utilization</span>

@@ -1999,6 +1999,106 @@ html.light-theme textarea:focus {
 .light-theme ::-webkit-scrollbar-thumb { background: #b0c0d8; }
 .light-theme ::-webkit-scrollbar-thumb:hover { background: #8daac8; }
 
+/* ─ Range sliders in light mode ─ */
+.light-theme input[type="range"] {
+  accent-color: var(--accent-cyan);
+}
+.light-theme .range-slider {
+  accent-color: var(--accent-cyan);
+}
+
+/* ─ Scenario panel in light mode ─ */
+.light-theme .scenario-panel {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(14,40,80,0.08);
+  box-shadow: 0 2px 14px rgba(14,40,80,0.06);
+}
+
+/* ─ Panel headings ─ */
+.light-theme .panel-heading {
+  color: #334155;
+}
+
+/* ─ Preset names ─ */
+.light-theme .preset-name {
+  color: #0c1a2e;
+}
+.light-theme .preset-meta {
+  color: #475569;
+}
+
+/* ─ Param labels ─ */
+.light-theme .param-label {
+  color: #334155;
+}
+
+/* ─ Empty state ─ */
+.light-theme .empty-state {
+  color: #475569;
+  border-color: rgba(14,40,80,0.12);
+  background: rgba(255,255,255,0.8);
+}
+.light-theme .empty-title {
+  color: #0c1a2e !important;
+}
+.light-theme .empty-sub {
+  color: #475569 !important;
+}
+
+/* ─ Chart sub text ─ */
+.light-theme .chart-sub {
+  color: #475569;
+}
+
+/* ─ Loading text ─ */
+.light-theme .loading-text {
+  color: #475569;
+}
+
+/* ─ Badge text contrast ─ */
+.light-theme .badge.ok {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+.light-theme .badge.warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+.light-theme .badge.critical {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+/* ─ Alert items ─ */
+.light-theme .alert-item.critical {
+  background: rgba(239, 68, 68, 0.08);
+  color: #dc2626;
+}
+.light-theme .alert-item.warning {
+  background: rgba(245, 158, 11, 0.08);
+  color: #b45309;
+}
+
+/* ─ Strategy card in light mode ─ */
+.light-theme .strategy-card {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(14,40,80,0.08);
+  box-shadow: 0 2px 14px rgba(14,40,80,0.06);
+}
+.light-theme .strategy-metric .metric-label {
+  color: #475569 !important;
+}
+
+/* ─ Occupancy bar background ─ */
+.light-theme .occupancy-bar {
+  background: #e2eaf4;
+}
+
+/* ─ Slider label ─ */
+.light-theme .slider-label {
+  color: #334155 !important;
+}
+
 /* ─── Theme Toggle Button ─── */
 .theme-toggle {
   width: 100%;

@@ -159,20 +159,20 @@ export default function AIPredictor() {
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 16 }}>
                                 {Object.entries(prediction.outcome_probabilities).map(([key, val]) => (
                                     <div key={key} style={{ padding: '10px 14px', background: 'rgba(148,163,184,0.05)', borderRadius: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <span style={{ fontSize: '0.8rem', color: '#94a3b8', textTransform: 'capitalize' }}>{key}</span>
-                                        <span style={{ fontWeight: 700, fontSize: '0.95rem', color: key === 'deceased' ? '#ef4444' : key === 'critical' ? '#f59e0b' : '#f1f5f9' }}>{val}%</span>
+                                        <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', textTransform: 'capitalize' }}>{key}</span>
+                                        <span style={{ fontWeight: 700, fontSize: '0.95rem', color: key === 'deceased' ? '#ef4444' : key === 'critical' ? '#f59e0b' : 'var(--text-primary)' }}>{val}%</span>
                                     </div>
                                 ))}
                             </div>
 
                             <div style={{ padding: '12px 16px', background: 'rgba(6,182,212,0.08)', borderRadius: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Est. Resource Hours</span>
+                                <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Est. Resource Hours</span>
                                 <span style={{ fontWeight: 700, color: '#06b6d4', fontSize: '1.1rem' }}>{prediction.predicted_resource_hours}h</span>
                             </div>
 
                             {importance && (
                                 <div style={{ marginTop: 12, padding: '8px 12px', background: 'rgba(148,163,184,0.05)', borderRadius: 8 }}>
-                                    <p style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                                    <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
                                         Model: {importance.model_type} • Accuracy: {(importance.model_metrics as any)?.outcome_accuracy}% • {(importance.model_metrics as any)?.features_used} features
                                     </p>
                                 </div>

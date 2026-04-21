@@ -173,7 +173,7 @@ export default function Dashboard() {
                                 return (
                                     <tr key={i}>
                                         <td style={{ fontWeight: 600 }}>{h.name}</td>
-                                        <td style={{ color: '#94a3b8' }}>{h.region}</td>
+                                        <td style={{ color: 'var(--text-secondary)' }}>{h.region}</td>
                                         <td>
                                             {h.occupied_beds}/{h.total_beds}
                                             <div className="occupancy-bar">
