@@ -207,8 +207,8 @@ export default function Login() {
                             {resetSent ? (
                                 <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} style={{ textAlign: 'center', padding: '20px 0' }}>
                                     <CheckCircle2 size={48} style={{ color: '#10b981', marginBottom: 16 }} />
-                                    <h3 style={{ color: '#f1f5f9', fontSize: '1.1rem', marginBottom: 8 }}>Reset Link Sent!</h3>
-                                    <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.5, marginBottom: 20 }}>
+                                    <h3 style={{ color: isLight ? '#0c1a2e' : '#f1f5f9', fontSize: '1.1rem', marginBottom: 8 }}>Reset Link Sent!</h3>
+                                    <p style={{ color: isLight ? '#475569' : '#94a3b8', fontSize: '0.85rem', lineHeight: 1.5, marginBottom: 20 }}>
                                         Check your inbox at <strong style={{ color: '#06b6d4' }}>{resetEmail}</strong> for a password reset link.
                                     </p>
                                     <button
@@ -230,13 +230,13 @@ export default function Login() {
                                     >
                                         <ArrowLeft size={16} /> Back to Sign In
                                     </button>
-                                    <h3 style={{ color: '#f1f5f9', fontSize: '1.05rem', marginBottom: 8 }}>Reset Password</h3>
-                                    <p style={{ color: '#64748b', fontSize: '0.82rem', marginBottom: 12, lineHeight: 1.5 }}>
+                                    <h3 style={{ color: isLight ? '#0c1a2e' : '#f1f5f9', fontSize: '1.05rem', marginBottom: 8 }}>Reset Password</h3>
+                                    <p style={{ color: isLight ? '#334155' : '#64748b', fontSize: '0.82rem', marginBottom: 12, lineHeight: 1.5 }}>
                                         Enter your email and we'll send you a secure link to reset your password.
                                     </p>
 
                                     <div style={{ padding: '8px 12px', background: 'rgba(6,182,212,0.08)', borderRadius: 8, marginBottom: 16, border: '1px solid rgba(6,182,212,0.15)' }}>
-                                        <p style={{ fontSize: '0.75rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
+                                        <p style={{ fontSize: '0.75rem', color: isLight ? '#475569' : '#94a3b8', margin: 0, lineHeight: 1.4 }}>
                                             <strong style={{ color: '#06b6d4' }}>Note:</strong> For security reasons (Email Enumeration Protection), Firebase will only send an email if a registered account matches the address provided. Please check your spam folder.
                                         </p>
                                     </div>
@@ -257,11 +257,11 @@ export default function Login() {
                                             onChange={e => setResetEmail(e.target.value)}
                                             style={{
                                                 width: '100%', padding: '14px 16px 14px 42px',
-                                                background: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(148, 163, 184, 0.2)',
-                                                borderRadius: 12, color: '#f1f5f9', fontSize: '0.92rem', outline: 'none',
+                                                background: isLight ? 'rgba(241,245,249,0.9)' : 'rgba(15, 23, 42, 0.6)', border: isLight ? '1px solid rgba(12,26,46,0.15)' : '1px solid rgba(148, 163, 184, 0.2)',
+                                                borderRadius: 12, color: isLight ? '#0c1a2e' : '#f1f5f9', fontSize: '0.92rem', outline: 'none',
                                             }}
                                             onFocus={e => e.currentTarget.style.borderColor = '#06b6d4'}
-                                            onBlur={e => e.currentTarget.style.borderColor = 'rgba(148, 163, 184, 0.2)'}
+                                            onBlur={e => e.currentTarget.style.borderColor = isLight ? 'rgba(12,26,46,0.15)' : 'rgba(148, 163, 184, 0.2)'}
                                         />
                                     </div>
                                     <button
@@ -309,12 +309,12 @@ export default function Login() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     style={{
                                         width: '100%', padding: '14px 16px 14px 42px',
-                                        background: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(148, 163, 184, 0.2)',
-                                        borderRadius: 12, color: '#f1f5f9', fontSize: '0.92rem',
+                                        background: isLight ? 'rgba(241,245,249,0.9)' : 'rgba(15, 23, 42, 0.6)', border: isLight ? '1px solid rgba(12,26,46,0.15)' : '1px solid rgba(148, 163, 184, 0.2)',
+                                        borderRadius: 12, color: isLight ? '#0c1a2e' : '#f1f5f9', fontSize: '0.92rem',
                                         outline: 'none', transition: 'border-color 0.2s'
                                     }}
                                     onFocus={e => e.currentTarget.style.borderColor = '#06b6d4'}
-                                    onBlur={e => e.currentTarget.style.borderColor = 'rgba(148, 163, 184, 0.2)'}
+                                    onBlur={e => e.currentTarget.style.borderColor = isLight ? 'rgba(12,26,46,0.15)' : 'rgba(148, 163, 184, 0.2)'}
                                 />
                             </div>
 
@@ -328,12 +328,12 @@ export default function Login() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     style={{
                                         width: '100%', padding: '14px 48px 14px 42px',
-                                        background: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(148, 163, 184, 0.2)',
-                                        borderRadius: 12, color: '#f1f5f9', fontSize: '0.92rem',
+                                        background: isLight ? 'rgba(241,245,249,0.9)' : 'rgba(15, 23, 42, 0.6)', border: isLight ? '1px solid rgba(12,26,46,0.15)' : '1px solid rgba(148, 163, 184, 0.2)',
+                                        borderRadius: 12, color: isLight ? '#0c1a2e' : '#f1f5f9', fontSize: '0.92rem',
                                         outline: 'none', transition: 'border-color 0.2s'
                                     }}
                                     onFocus={e => e.currentTarget.style.borderColor = '#06b6d4'}
-                                    onBlur={e => e.currentTarget.style.borderColor = 'rgba(148, 163, 184, 0.2)'}
+                                    onBlur={e => e.currentTarget.style.borderColor = isLight ? 'rgba(12,26,46,0.15)' : 'rgba(148, 163, 184, 0.2)'}
                                 />
                                 <button
                                     type="button"
@@ -387,7 +387,7 @@ export default function Login() {
 
                             <div style={{ display: 'flex', alignItems: 'center', margin: '16px 0' }}>
                                 <div style={{ flex: 1, height: 1, background: 'rgba(148, 163, 184, 0.15)' }} />
-                                <span style={{ padding: '0 14px', fontSize: '0.78rem', color: '#475569', fontWeight: 500 }}>OR CONTINUE WITH</span>
+                                <span style={{ padding: '0 14px', fontSize: '0.78rem', color: isLight ? '#334155' : '#94a3b8', fontWeight: 500 }}>OR CONTINUE WITH</span>
                                 <div style={{ flex: 1, height: 1, background: 'rgba(148, 163, 184, 0.15)' }} />
                             </div>
 
@@ -438,7 +438,7 @@ export default function Login() {
                     initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ delay: 0.8 }}
                 >
                     <Shield size={14} style={{ color: '#10b981' }} />
-                    <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Verified Health Official Access Only</span>
+                    <span style={{ fontSize: '0.72rem', color: isLight ? '#475569' : '#94a3b8' }}>Verified Health Official Access Only</span>
                 </motion.div>
             </motion.div>
         </div>

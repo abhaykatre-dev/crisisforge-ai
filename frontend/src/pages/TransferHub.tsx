@@ -131,7 +131,7 @@ export default function TransferHub() {
                                         <div style={{ width: 10, height: 10, borderRadius: '50%', background: STATUS_COLORS[h.status] || '#64748b', flexShrink: 0 }} />
                                         <div style={{ flex: 1 }}>
                                             <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{h.name}</div>
-                                            <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{h.region} • {h.available_beds} beds, {h.available_icu} ICU free</div>
+                                            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>{h.region} • {h.available_beds} beds, {h.available_icu} ICU free</div>
                                         </div>
                                         <div style={{ textAlign: 'right' }}>
                                             <div style={{ fontWeight: 700, color: STATUS_COLORS[h.status], fontSize: '0.95rem' }}>{h.pressure}%</div>
@@ -181,7 +181,7 @@ export default function TransferHub() {
                                                 </td>
                                                 <td>
                                                     <span style={{ fontWeight: 600 }}>{t.total_patients}</span>
-                                                    <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}> ({t.patients_general}G + {t.patients_icu}I)</span>
+                                                    <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}> ({t.patients_general}G + {t.patients_icu}I)</span>
                                                 </td>
                                                 <td>{t.distance_km} km</td>
                                                 <td>{t.estimated_transfer_time_min} min</td>
