@@ -7,8 +7,8 @@ import { useTheme } from '../contexts/ThemeContext';
 export default function TelegramPanel() {
     const { theme } = useTheme();
     const isLight = theme === 'light';
-    const [botToken, setBotToken] = useState('8713401692:AAG25sDsrG9h2OwnI4tPUr9Zedvp6P_Zybs');
-    const [chatId, setChatId] = useState('6906252580');
+    const [botToken] = useState('');
+    const [chatId] = useState('');
     const [messageType, setMessageType] = useState('alerts');
     const [customMessage, setCustomMessage] = useState('');
     const [sending, setSending] = useState(false);

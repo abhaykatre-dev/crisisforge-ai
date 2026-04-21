@@ -100,6 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const logOut = async () => {
         if (!isFirebaseConfigured || !auth) {
+            window.location.href = '/login';
             return;
         }
         try {

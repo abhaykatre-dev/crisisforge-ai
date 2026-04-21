@@ -58,14 +58,14 @@ export default function Sidebar() {
 
             {/* ── Branding Header ── */}
             <div style={{
-                padding: '24px 18px',
+                padding: '8px 14px',
                 borderBottom: '1px solid var(--border-subtle)',
                 background: isLight ? 'var(--bg-secondary)' : 'linear-gradient(180deg, #0f172a 0%, var(--bg-secondary) 100%)',
                 flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 20
+                gap: 8
             }}>
                 {/* Logo Area — Complete Logo */}
                 <div
@@ -75,14 +75,16 @@ export default function Sidebar() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        padding: '8px 0'
+                        padding: '0',
+                        margin: '0',
+                        width: '100%'
                     }}
                 >
                     <img
                         src={isLight ? "/logo-light.png" : "/logo-dark.png"}
                         alt="CrisisForge"
                         style={{
-                            height: '100px',
+                            height: '84px',
                             width: 'auto',
                             filter: 'drop-shadow(0 0 8px rgba(6,182,212,0.15))',
                             objectFit: 'contain'
@@ -120,7 +122,7 @@ export default function Sidebar() {
                         <div key={group}>
                             {/* Group Label */}
                             <div style={{
-                                padding: '10px 18px 4px',
+                                padding: '6px 18px 2px',
                                 fontFamily: 'var(--font-mono)',
                                 fontSize: '0.55rem',
                                 fontWeight: 700,
@@ -145,7 +147,7 @@ export default function Sidebar() {
                                             display: 'flex',
                                             alignItems: 'center',
                                             width: '100%',
-                                            padding: '10px 18px',
+                                            padding: '8px 18px',
                                             background: active
                                                 ? `linear-gradient(90deg, ${item.color}1a 0%, transparent 100%)`
                                                 : 'transparent',
@@ -218,11 +220,11 @@ export default function Sidebar() {
 
             {/* ── Footer ── */}
             <div style={{
-                padding: '12px 14px 16px',
+                padding: '10px 14px 12px',
                 borderTop: '1px solid var(--border-subtle)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 8,
+                gap: 6,
                 flexShrink: 0,
             }}>
                 {/* Alerts + Theme row */}

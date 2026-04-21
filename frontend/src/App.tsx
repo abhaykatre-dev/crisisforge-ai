@@ -209,15 +209,19 @@ function TopNav() {
             onClick={() => setShowProfile(!showProfile)}
             style={{
               width: 32, height: 32,
-              background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
+              background: user?.photoURL ? 'transparent' : 'linear-gradient(135deg, #2563eb, #7c3aed)',
+              borderRadius: 6,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: '0.65rem', fontWeight: 700, color: '#fff',
               fontFamily: 'var(--font-sans)',
               cursor: 'pointer',
               flexShrink: 0,
               boxShadow: showProfile ? '0 0 0 2px var(--border-active)' : 'none',
+              overflow: 'hidden',
             }}>
-            {user?.displayName 
+            {user?.photoURL ? (
+              <img src={user.photoURL} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : user?.displayName 
               ? user.displayName.split(' ').map((n: string) => n[0]).slice(0,2).join('').toUpperCase() 
               : user?.email 
                 ? user.email.substring(0, 2).toUpperCase() 

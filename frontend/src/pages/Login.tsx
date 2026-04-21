@@ -179,16 +179,10 @@ export default function Login() {
                     <img 
                         src={isLight ? "/logo-light.png" : "/logo-dark.png"} 
                         alt="CrisisForge" 
-                        style={{ height: '92px', width: 'auto', objectFit: 'contain' }}
+                        style={{ width: '100%', maxWidth: '320px', height: 'auto', objectFit: 'contain' }}
                     />
                 </motion.div>
 
-                <h1 style={{ fontFamily: 'Roboto Condensed, sans-serif', fontSize: '1.8rem', fontWeight: 700, color: isLight ? '#0c1a2e' : '#f1f5f9', marginBottom: 6, textAlign: 'center', letterSpacing: '-0.02em' }}>
-                    CrisisForge AI
-                </h1>
-                <p style={{ fontFamily: 'Roboto, sans-serif', color: isLight ? '#475569' : '#94a3b8', fontSize: '0.86rem', marginBottom: 28, textAlign: 'center', lineHeight: 1.6 }}>
-                    Secure healthcare resource allocation<br />and predictive intelligence platform.
-                </p>
 
                 <AnimatePresence mode="wait">
                     {showForgotPassword ? (
